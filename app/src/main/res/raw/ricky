@@ -1,0 +1,104 @@
+{
+"results": [
+    {
+      "id": 1,
+      "name": "Rick Sanchez",
+      "gender": "Male"
+    },
+    {
+      "id": 2,
+      "name": "Morty Smith",
+      "gender": "Male"
+    },
+    {
+      "id": 3,
+      "name": "Summer Smith",
+      "gender": "Female"
+    },
+    {
+      "id": 4,
+      "name": "Beth Smith",
+      "gender": "Female"
+    },
+    {
+      "id": 5,
+      "name": "Jerry Smith",
+      "gender": "Male"
+    },
+    {
+      "id": 6,
+      "name": "Abadango Cluster Princess",
+      "gender": "Female"
+    },
+    {
+      "id": 7,
+      "name": "Abradolf Lincler",
+      "gender": "Male"
+    },
+    {
+      "id": 8,
+      "name": "Adjudicator Rick",
+      "gender": "Male"
+    },
+    {
+      "id": 9,
+      "name": "Agency Director",
+      "gender": "Male"
+    },
+    {
+      "id": 10,
+      "name": "Alan Rails",
+      "gender": "Male"
+    },
+    {
+      "id": 11,
+      "name": "Albert Einstein",
+      "gender": "Male"
+    },
+    {
+      "id": 12,
+      "name": "Alexander",
+      "gender": "Male"
+    },
+    {
+      "id": 13,
+      "name": "Alien Googah",
+      "gender": "unknown"
+    },
+    {
+      "id": 14,
+      "name": "Alien Morty",
+      "gender": "Male"
+    },
+    {
+      "id": 15,
+      "name": "Alien Rick",
+      "gender": "Male"
+    },
+    {
+      "id": 16,
+      "name": "Amish Cyborg",
+      "gender": "Male"
+    },
+    {
+      "id": 17,
+      "name": "Annie",
+      "gender": "Female"
+    },
+    {
+      "id": 18,
+      "name": "Antenna Morty",
+      "gender": "Male"
+    },
+    {
+      "id": 19,
+      "name": "Antenna Rick",
+      "gender": "Male"
+    },
+    {
+      "id": 20,
+      "name": "Ants in my Eyes Johnson",
+      "gender": "Male"
+    }
+  ]
+}
