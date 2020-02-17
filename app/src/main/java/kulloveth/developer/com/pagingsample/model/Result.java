@@ -1,5 +1,7 @@
 package kulloveth.developer.com.pagingsample.model;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -65,5 +67,23 @@ public class Result {
     public int hashCode() {
         return Objects.hash(getId(), getName(), getGender());
     }
+
+    public static final DiffUtil.ItemCallback<Result> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<Result>() {
+                @Override
+                public boolean areItemsTheSame(
+                        @NonNull Result oldUser, @NonNull Result newUser) {
+                    // User properties may have changed if reloaded from the DB, but ID is fixed
+                    return oldUser.getId() == newUser.getId();
+                }
+
+                @Override
+                public boolean areContentsTheSame(
+                        @NonNull Result oldUser, @NonNull Result newUser) {
+                    // NOTE: if you use equals, your object must properly override Object#equals()
+                    // Incorrectly returning false here will result in too many animations.
+                    return oldUser.equals(newUser);
+                }
+            };
 
 }
