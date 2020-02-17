@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.paging.PagedList;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import kulloveth.developer.com.pagingsample.model.Result;
 
 public class MainActivityViewModel extends AndroidViewModel {
     private ResultRepository resultRepository;
-    private LiveData<List<Result>> allResult;
+    private LiveData<PagedList<Result>> allResult;
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
@@ -29,7 +30,7 @@ public class MainActivityViewModel extends AndroidViewModel {
         resultRepository.deleteResult(result);
     }
 
-    public LiveData<List<Result>> getAllResult(){
+    public LiveData<PagedList<Result>> getAllResult(){
       return allResult;
     }
 }

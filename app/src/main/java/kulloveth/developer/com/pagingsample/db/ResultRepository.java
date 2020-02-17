@@ -3,6 +3,8 @@ package kulloveth.developer.com.pagingsample.db;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -12,13 +14,13 @@ import kulloveth.developer.com.pagingsample.model.Result;
 
 public class ResultRepository {
     private ResultDao resultDao;
-    private LiveData<List<Result>> allResult;
+    private LiveData<PagedList<Result>> allResult;
     private Executor executor;
 
     public ResultRepository(Application application) {
         ResultDatabase database = ResultDatabase.getDatabase(application);
         resultDao = database.resultDao();
-        allResult = resultDao.getAllResult();
+        allResult = new LivePagedListBuilder<>(resultDao.getAllResult(),10).build();
         executor = Executors.newFixedThreadPool(4);
     }
 
@@ -30,7 +32,7 @@ public class ResultRepository {
         executor.execute(() -> resultDao.delete(result));
     }
 
-    public LiveData<List<Result>> getAllResult(){
+    public LiveData<PagedList<Result>> getAllResult(){
         return allResult;
     }
 }

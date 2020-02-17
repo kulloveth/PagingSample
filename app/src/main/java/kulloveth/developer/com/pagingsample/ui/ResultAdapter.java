@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ListAdapter;
+import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import kulloveth.developer.com.pagingsample.R;
 import kulloveth.developer.com.pagingsample.model.Result;
 
-public class ResultAdapter extends ListAdapter<Result, ResultAdapter.ResultViewHolder> {
+public class ResultAdapter extends PagedListAdapter<Result, ResultAdapter.ResultViewHolder> {
 
     public ResultAdapter() {
         super(Result.DIFF_CALLBACK);
