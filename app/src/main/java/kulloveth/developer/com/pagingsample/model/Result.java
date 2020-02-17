@@ -3,6 +3,8 @@ package kulloveth.developer.com.pagingsample.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "rickandmorty_table")
 public class Result {
 
@@ -40,4 +42,28 @@ public class Result {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Result)) return false;
+        Result result = (Result) o;
+        return getId() == result.getId() &&
+                getName().equals(result.getName()) &&
+                getGender().equals(result.getGender());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getGender());
+    }
+
 }

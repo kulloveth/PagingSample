@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         mainActivityViewModel.getAllResult().observe(this, results -> {
             for (Result result : results) {
-                Log.d("fetch", "onChanged:" + result);
+                Log.d("fetch", "onChanged:" + result.toString());
             }
         });
     }
