@@ -1,5 +1,6 @@
 package kulloveth.developer.com.pagingsample.db;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -19,7 +20,7 @@ public interface ResultDao {
     void delete(Result result);
 
     @Query("Select * from rickandmorty_table ORDER BY name ASC")
-    List<Result> getAllResult();
+    LiveData<List<Result>> getAllResult();
 
 
 }
