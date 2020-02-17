@@ -10,7 +10,7 @@ public class Result {
     private int id;
     private String name;
     private String gender;
-    
+
 
     public Result(String name, String gender) {
         this.name = name;
