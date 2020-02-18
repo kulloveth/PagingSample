@@ -1,14 +1,11 @@
 package kulloveth.developer.com.pagingsample.db;
 
-import androidx.lifecycle.LiveData;
 import androidx.paging.DataSource;
-import androidx.paging.PagedList;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import java.util.List;
 
 import kulloveth.developer.com.pagingsample.model.Result;
 

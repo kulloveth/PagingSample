@@ -1,15 +1,17 @@
 package kulloveth.developer.com.pagingsample;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
 
 import kulloveth.developer.com.pagingsample.model.Result;
 import kulloveth.developer.com.pagingsample.ui.MainActivityViewModel;
@@ -34,5 +36,19 @@ public class MainActivity extends AppCompatActivity {
             }
             adapter.submitList(results);
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.add){
+            startActivity(new Intent(this, AddActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
