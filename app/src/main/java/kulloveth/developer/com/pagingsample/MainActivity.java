@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import kulloveth.developer.com.pagingsample.model.Result;
 import kulloveth.developer.com.pagingsample.ui.MainActivityViewModel;
 import kulloveth.developer.com.pagingsample.ui.ResultAdapter;
@@ -27,26 +26,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ResultAdapter adapter = new ResultAdapter();
         recyclerView = findViewById(R.id.result_rv);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager =new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int listScrolled = layoutManager.getItemCount();
+                int visibleItemCount = layoutManager.getChildCount();
+                int lastVisibleItemCOunt = layoutManager.findLastVisibleItemPosition();
+            }
+        });
         recyclerView.setAdapter(adapter);
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
-        mainActivityViewModel.getAllResult().observe(this, results -> {
-            for (Result result : results) {
-                Log.d("fetch", "onChanged:" + result.toString());
-            }
-            adapter.submitList(results);
-        });
+        //  for (Result result : results) {
+        //                Log.d("fetch", "onChanged:" + result.toString());
+        //}
+        mainActivityViewModel.getAllResult().observe(this, adapter::submitList);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        this.getMenuInflater().inflate(R.menu.main,menu);
+        this.getMenuInflater().inflate(R.menu.main, menu);
         return true;
 
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.add){
+        if (item.getItemId() == R.id.add) {
             startActivity(new Intent(this, AddActivity.class));
         }
         return super.onOptionsItemSelected(item);

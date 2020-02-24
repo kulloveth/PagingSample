@@ -2,8 +2,8 @@ package kulloveth.developer.com.pagingsample.db;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.paging.DataSource;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
@@ -13,20 +13,27 @@ import java.util.concurrent.Executors;
 import kulloveth.developer.com.pagingsample.model.Result;
 
 public class ResultRepository {
-    private ResultDao resultDao;
-    private LiveData<PagedList<Result>> allResult;
+   private ResultDao resultDao;
+   // private DataSource.Factory<Integer, Result> allResult;
     private Executor executor;
+    LiveData<PagedList<Result>> resultList;
 
     public ResultRepository(Application application) {
+        executor = Executors.newFixedThreadPool(4);
         ResultDatabase database = ResultDatabase.getDatabase(application);
         resultDao = database.resultDao();
+        ResultDatasourceFactory resultDatasourceFactory = new ResultDatasourceFactory(application);
         PagedList.Config pagedListConfig =
-                new PagedList.Config.Builder()
+                (new PagedList.Config.Builder())
+                        .setPageSize(10)
                         .setInitialLoadSizeHint(10)
-                        .setPageSize(15).build();
-        allResult = new LivePagedListBuilder<>(resultDao.getAllResult(), pagedListConfig)
+                        .setEnablePlaceholders(true)
+                        .build();
+       // allResult = resultDao.getAllResult();
+        resultList = new LivePagedListBuilder<>(resultDatasourceFactory, pagedListConfig)
+                .setFetchExecutor(executor)
                 .build();
-        executor = Executors.newFixedThreadPool(4);
+
     }
 
     public void insertResult(Result result) {
@@ -38,6 +45,6 @@ public class ResultRepository {
     }
 
     public LiveData<PagedList<Result>> getAllResult() {
-        return allResult;
+        return resultList;
     }
 }

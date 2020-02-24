@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.paging.PagedList;
 
-import java.util.List;
 
 import kulloveth.developer.com.pagingsample.db.ResultRepository;
 import kulloveth.developer.com.pagingsample.model.Result;

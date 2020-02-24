@@ -27,7 +27,10 @@ public class ResultAdapter extends PagedListAdapter<Result, ResultAdapter.Result
 
     @Override
     public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
-        holder.bind(getItem(position));
+        Result result = getItem(position);
+        if (result != null) {
+            holder.bind(result);
+        }
     }
 
 
