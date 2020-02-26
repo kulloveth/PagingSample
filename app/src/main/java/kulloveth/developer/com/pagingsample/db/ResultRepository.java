@@ -16,7 +16,7 @@ public class ResultRepository {
    private ResultDao resultDao;
    // private DataSource.Factory<Integer, Result> allResult;
     private Executor executor;
-    LiveData<PagedList<Result>> resultList;
+    private LiveData<PagedList<Result>> resultList;
 
     public ResultRepository(Application application) {
         executor = Executors.newFixedThreadPool(4);
@@ -26,7 +26,7 @@ public class ResultRepository {
         PagedList.Config pagedListConfig =
                 (new PagedList.Config.Builder())
                         .setPageSize(10)
-                        .setInitialLoadSizeHint(10)
+                        .setPrefetchDistance(10)
                         .setEnablePlaceholders(true)
                         .build();
        // allResult = resultDao.getAllResult();

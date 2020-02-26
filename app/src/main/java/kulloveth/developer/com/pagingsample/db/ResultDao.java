@@ -1,7 +1,5 @@
 package kulloveth.developer.com.pagingsample.db;
 
-import androidx.lifecycle.LiveData;
-import androidx.paging.DataSource;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -22,7 +20,7 @@ public interface ResultDao {
     void delete(Result result);
     //ORDER BY name ASC
 
-    @Query("Select * from rickandmorty_table  where id>= :id LIMIT :size ")
+    @Query("Select * from rickandmorty_table  where id>= :id ORDER BY name ASC LIMIT :size ")
     List<Result> getAllResult(int id, int size);
 
 

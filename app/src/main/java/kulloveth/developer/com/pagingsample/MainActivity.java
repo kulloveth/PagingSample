@@ -2,7 +2,6 @@ package kulloveth.developer.com.pagingsample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import kulloveth.developer.com.pagingsample.model.Result;
 import kulloveth.developer.com.pagingsample.ui.MainActivityViewModel;
 import kulloveth.developer.com.pagingsample.ui.ResultAdapter;
 
@@ -26,22 +24,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ResultAdapter adapter = new ResultAdapter();
         recyclerView = findViewById(R.id.result_rv);
-        LinearLayoutManager layoutManager =new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int listScrolled = layoutManager.getItemCount();
-                int visibleItemCount = layoutManager.getChildCount();
-                int lastVisibleItemCOunt = layoutManager.findLastVisibleItemPosition();
-            }
-        });
         recyclerView.setAdapter(adapter);
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
-        //  for (Result result : results) {
-        //                Log.d("fetch", "onChanged:" + result.toString());
-        //}
         mainActivityViewModel.getAllResult().observe(this, adapter::submitList);
     }
 
